@@ -26,7 +26,7 @@ commands = [
   "/usr/local/libexec/telegraf/telegraf_old_gateways.py",
   "/usr/local/bin/telegraf_pfifgw.php",
   "sh /usr/local/bin/telegraf_temperature.sh",
-  "sh /usr/local/bin/telegraf_pinger_loss.sh"
+  "sh /usr/local/bin/telegraf_pinger_ploss.sh"
 ]
 timeout = "10s"
 data_format = "influx"
@@ -40,7 +40,7 @@ commands = [
   "/usr/local/libexec/telegraf/telegraf_new_gateways.py",
   "/usr/local/bin/telegraf_pfifgw.php",
   "sh /usr/local/bin/telegraf_temperature.sh",
-  "sh /usr/local/bin/telegraf_pinger_loss.sh"
+  "sh /usr/local/bin/telegraf_pinger_ploss.sh"
 ]
 timeout = "10s"
 data_format = "influx"
