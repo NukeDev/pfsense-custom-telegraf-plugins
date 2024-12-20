@@ -74,7 +74,7 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 3,
+        "h": 4,
         "w": 2,
         "x": 0,
         "y": 1
@@ -169,7 +169,7 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 6,
+        "h": 8,
         "w": 2,
         "x": 2,
         "y": 1
@@ -310,7 +310,7 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 6,
+        "h": 8,
         "w": 8,
         "x": 4,
         "y": 1
@@ -509,7 +509,7 @@
         ]
       },
       "gridPos": {
-        "h": 3,
+        "h": 4,
         "w": 5,
         "x": 12,
         "y": 1
@@ -692,7 +692,7 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 6,
+        "h": 8,
         "w": 7,
         "x": 17,
         "y": 1
@@ -849,10 +849,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 3,
+        "h": 4,
         "w": 2,
         "x": 0,
-        "y": 4
+        "y": 5
       },
       "hideTimeOverride": true,
       "id": 45,
@@ -867,7 +867,7 @@
           "calcs": [
             "lastNotNull"
           ],
-          "fields": "",
+          "fields": "/^uptime_format$/",
           "values": false
         },
         "showPercentChange": false,
@@ -885,6 +885,8 @@
           "measurement": "system",
           "orderByTime": "ASC",
           "policy": "default",
+          "query": "SELECT \"uptime_format\" FROM \"system\" WHERE (\"host\" =~ /^$Host$/) AND $timeFilter",
+          "rawQuery": true,
           "refId": "A",
           "resultFormat": "table",
           "select": [
@@ -948,10 +950,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 3,
+        "h": 4,
         "w": 5,
         "x": 12,
-        "y": 4
+        "y": 5
       },
       "id": 220,
       "options": {
@@ -1110,7 +1112,7 @@
         "h": 6,
         "w": 8,
         "x": 0,
-        "y": 7
+        "y": 9
       },
       "id": 223,
       "options": {
@@ -1243,7 +1245,7 @@
         "h": 6,
         "w": 8,
         "x": 8,
-        "y": 7
+        "y": 9
       },
       "id": 17,
       "options": {
@@ -1440,7 +1442,7 @@
         "h": 6,
         "w": 8,
         "x": 16,
-        "y": 7
+        "y": 9
       },
       "id": 103,
       "options": {
@@ -1491,6 +1493,8 @@
           "measurement": "temperature",
           "orderByTime": "ASC",
           "policy": "default",
+          "query": "SELECT mean(\"degrees\") FROM \"temperature\" WHERE (\"host\" =~ /^$Host$/ AND \"sensor\" =~ /^$Sensor$/) AND $timeFilter GROUP BY time(10s), \"sensor\" fill(null)",
+          "rawQuery": true,
           "refId": "A",
           "resultFormat": "time_series",
           "select": [
@@ -1531,7 +1535,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 13
+        "y": 15
       },
       "id": 525,
       "panels": [
@@ -2714,7 +2718,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 14
+        "y": 16
       },
       "id": 1005,
       "panels": [
@@ -2782,7 +2786,7 @@
             "h": 9,
             "w": 5,
             "x": 0,
-            "y": 15
+            "y": 44
           },
           "id": 1059,
           "options": {
@@ -2951,7 +2955,7 @@
             "h": 9,
             "w": 3,
             "x": 5,
-            "y": 15
+            "y": 44
           },
           "id": 1051,
           "options": {
@@ -3101,7 +3105,7 @@
             "h": 18,
             "w": 8,
             "x": 8,
-            "y": 15
+            "y": 44
           },
           "id": 1066,
           "options": {
@@ -3252,7 +3256,7 @@
             "h": 9,
             "w": 3,
             "x": 16,
-            "y": 15
+            "y": 44
           },
           "id": 1055,
           "options": {
@@ -3428,7 +3432,7 @@
             "h": 9,
             "w": 5,
             "x": 19,
-            "y": 15
+            "y": 44
           },
           "id": 1063,
           "options": {
@@ -3634,7 +3638,7 @@
             "h": 9,
             "w": 5,
             "x": 0,
-            "y": 24
+            "y": 76
           },
           "id": 1061,
           "options": {
@@ -3783,7 +3787,7 @@
             "h": 9,
             "w": 3,
             "x": 5,
-            "y": 24
+            "y": 76
           },
           "id": 1053,
           "options": {
@@ -3906,7 +3910,7 @@
             "h": 9,
             "w": 3,
             "x": 16,
-            "y": 24
+            "y": 76
           },
           "id": 1057,
           "options": {
@@ -4087,7 +4091,7 @@
             "h": 9,
             "w": 5,
             "x": 19,
-            "y": 24
+            "y": 76
           },
           "id": 1065,
           "options": {
@@ -4211,1981 +4215,170 @@
       "type": "row"
     },
     {
-      "collapsed": false,
-      "gridPos": {
-        "h": 1,
-        "w": 24,
-        "x": 0,
-        "y": 15
-      },
-      "id": 143,
-      "panels": [],
-      "title": "Network Stats",
-      "type": "row"
-    },
-    {
-      "datasource": {
-        "uid": "$dataSource"
-      },
-      "description": "",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "barWidthFactor": 0.6,
-            "drawStyle": "line",
-            "fillOpacity": 10,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "insertNulls": false,
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "log": 10,
-              "type": "log"
-            },
-            "showPoints": "never",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "links": [],
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "ms"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 11,
-        "x": 0,
-        "y": 16
-      },
-      "id": 4,
-      "options": {
-        "alertThreshold": true,
-        "legend": {
-          "calcs": [
-            "mean",
-            "lastNotNull",
-            "max",
-            "min"
-          ],
-          "displayMode": "table",
-          "placement": "bottom",
-          "showLegend": true
-        },
-        "tooltip": {
-          "mode": "multi",
-          "sort": "none"
-        }
-      },
-      "pluginVersion": "11.4.0",
-      "targets": [
-        {
-          "alias": "$tag_gateway_name",
-          "datasource": {
-            "uid": "$dataSource"
-          },
-          "groupBy": [
-            {
-              "params": [
-                "10s"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "gateway_name"
-              ],
-              "type": "tag"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "hide": false,
-          "measurement": "gateways",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT mean(\"rtt\") FROM \"gateways\" WHERE (\"host\" =~ /^$Host$/ AND \"gateway_name\" =~ /^$Gateway$/) AND $timeFilter GROUP BY time(10s), \"gateway_name\" fill(null)",
-          "rawQuery": true,
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "delay"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "host",
-              "operator": "=~",
-              "value": "/^$Host$/"
-            },
-            {
-              "condition": "AND",
-              "key": "gateway_name",
-              "operator": "=~",
-              "value": "/^$Gateway$/"
-            }
-          ]
-        }
-      ],
-      "title": "Gateway RTT - $Gateway ",
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "uid": "$dataSource"
-      },
-      "description": "",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "custom": {
-            "align": "left",
-            "cellOptions": {
-              "type": "color-text"
-            },
-            "filterable": true,
-            "inspect": false
-          },
-          "mappings": [
-            {
-              "options": {
-                "0": {
-                  "text": "DOWN"
-                },
-                "1": {
-                  "text": "UP"
-                },
-                "2": {
-                  "text": "UNKNOWN"
-                }
-              },
-              "type": "value"
-            }
-          ],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "rgb(255, 255, 255)",
-                "value": null
-              }
-            ]
-          }
-        },
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "name"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "Interface"
-              },
-              {
-                "id": "unit",
-                "value": "short"
-              },
-              {
-                "id": "decimals",
-                "value": 2
-              },
-              {
-                "id": "custom.align"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "FriendlyName"
-            },
-            "properties": [
-              {
-                "id": "custom.width",
-                "value": 126
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Status"
-            },
-            "properties": [
-              {
-                "id": "thresholds",
-                "value": {
-                  "mode": "absolute",
-                  "steps": [
-                    {
-                      "color": "rgba(81, 48, 255, 0)",
-                      "value": null
-                    },
-                    {
-                      "color": "red",
-                      "value": 0
-                    },
-                    {
-                      "color": "green",
-                      "value": 1
-                    },
-                    {
-                      "color": "dark-orange",
-                      "value": 2
-                    }
-                  ]
-                }
-              },
-              {
-                "id": "mappings",
-                "value": [
-                  {
-                    "options": {
-                      "0": {
-                        "text": "DOWN"
-                      },
-                      "1": {
-                        "text": "UP"
-                      },
-                      "2": {
-                        "text": "UNKNOWN"
-                      }
-                    },
-                    "type": "value"
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 13,
-        "x": 11,
-        "y": 16
-      },
-      "id": 194,
-      "options": {
-        "cellHeight": "sm",
-        "footer": {
-          "countRows": false,
-          "fields": "",
-          "reducer": [
-            "sum"
-          ],
-          "show": false
-        },
-        "showHeader": true,
-        "sortBy": [
-          {
-            "desc": false,
-            "displayName": "Interface"
-          }
-        ]
-      },
-      "pluginVersion": "11.4.0",
-      "targets": [
-        {
-          "alias": "",
-          "datasource": {
-            "uid": "$dataSource"
-          },
-          "groupBy": [
-            {
-              "params": [
-                "name"
-              ],
-              "type": "tag"
-            }
-          ],
-          "limit": "1",
-          "measurement": "interface",
-          "orderByTime": "ASC",
-          "policy": "autogen",
-          "refId": "A",
-          "resultFormat": "table",
-          "select": [
-            [
-              {
-                "params": [
-                  "friendlyname"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [
-                  "FriendlyName"
-                ],
-                "type": "alias"
-              }
-            ],
-            [
-              {
-                "params": [
-                  "ip4_address"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [
-                  "IPv4 Address"
-                ],
-                "type": "alias"
-              }
-            ],
-            [
-              {
-                "params": [
-                  "mac_address"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [
-                  "Physical Address"
-                ],
-                "type": "alias"
-              }
-            ],
-            [
-              {
-                "params": [
-                  "status"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "last"
-              },
-              {
-                "params": [
-                  "Status"
-                ],
-                "type": "alias"
-              }
-            ],
-            [
-              {
-                "params": [
-                  "ip6_address"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [
-                  "IPv6 Address"
-                ],
-                "type": "alias"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "host",
-              "operator": "=~",
-              "value": "/^$Host$/"
-            }
-          ]
-        }
-      ],
-      "title": "Interface Summary",
-      "transformations": [
-        {
-          "id": "merge",
-          "options": {
-            "reducers": []
-          }
-        },
-        {
-          "id": "filterFieldsByName",
-          "options": {
-            "include": {
-              "names": [
-                "name",
-                "FriendlyName",
-                "Physical Address",
-                "Status",
-                "IPv4 Address"
-              ]
-            }
-          }
-        }
-      ],
-      "type": "table"
-    },
-    {
-      "datasource": {
-        "uid": "$dataSource"
-      },
-      "description": "",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "barWidthFactor": 0.6,
-            "drawStyle": "line",
-            "fillOpacity": 10,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "insertNulls": false,
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "never",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "decimals": 0,
-          "links": [],
-          "mappings": [],
-          "max": 100,
-          "min": 0,
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "percent"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 11,
-        "x": 0,
-        "y": 24
-      },
-      "id": 487,
-      "options": {
-        "alertThreshold": true,
-        "legend": {
-          "calcs": [
-            "mean",
-            "lastNotNull",
-            "max"
-          ],
-          "displayMode": "table",
-          "placement": "bottom",
-          "showLegend": true
-        },
-        "tooltip": {
-          "mode": "multi",
-          "sort": "none"
-        }
-      },
-      "pluginVersion": "11.4.0",
-      "targets": [
-        {
-          "alias": "$tag_gateway_name",
-          "datasource": {
-            "uid": "$dataSource"
-          },
-          "groupBy": [
-            {
-              "params": [
-                "10s"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "gateway_name"
-              ],
-              "type": "tag"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "gateways",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "loss"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "host",
-              "operator": "=~",
-              "value": "/^$Host$/"
-            },
-            {
-              "condition": "AND",
-              "key": "gateway_name",
-              "operator": "=~",
-              "value": "/^$Gateway$/"
-            }
-          ]
-        }
-      ],
-      "title": "Gateway Loss - $Gateway ",
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "uid": "$dataSource"
-      },
-      "description": "",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "custom": {
-            "align": "left",
-            "cellOptions": {
-              "type": "color-text"
-            },
-            "filterable": true,
-            "inspect": false
-          },
-          "mappings": [
-            {
-              "options": {
-                "none": {
-                  "text": "OK"
-                }
-              },
-              "type": "value"
-            }
-          ],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "rgb(255, 255, 255)",
-                "value": null
-              }
-            ]
-          }
-        },
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Default GW"
-            },
-            "properties": [
-              {
-                "id": "mappings",
-                "value": [
-                  {
-                    "options": {
-                      "0": {
-                        "text": "False"
-                      },
-                      "1": {
-                        "text": "True"
-                      }
-                    },
-                    "type": "value"
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Interface"
-            },
-            "properties": [
-              {
-                "id": "custom.width",
-                "value": 157
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Gateway Description"
-            },
-            "properties": [
-              {
-                "id": "custom.width",
-                "value": 274
-              }
-            ]
-          }
-        ]
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 13,
-        "x": 11,
-        "y": 24
-      },
-      "id": 961,
-      "options": {
-        "cellHeight": "sm",
-        "footer": {
-          "countRows": false,
-          "fields": "",
-          "reducer": [
-            "sum"
-          ],
-          "show": false
-        },
-        "showHeader": true,
-        "sortBy": []
-      },
-      "pluginVersion": "11.4.0",
-      "targets": [
-        {
-          "datasource": {
-            "uid": "$dataSource"
-          },
-          "groupBy": [
-            {
-              "params": [
-                "gateway_name"
-              ],
-              "type": "tag"
-            }
-          ],
-          "hide": false,
-          "limit": "1",
-          "measurement": "gateways",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT \"gwdescr\", \"source\", \"monitor\", \"defaultgw\", \"status\", \"substatus\", \"interface\" FROM \"gateways\" WHERE (\"host\" =~ /^$Host$/) AND $timeFilter GROUP BY \"gateway_name\" LIMIT 1",
-          "rawQuery": true,
-          "refId": "A",
-          "resultFormat": "table",
-          "select": [
-            [
-              {
-                "params": [
-                  "gwdescr"
-                ],
-                "type": "field"
-              }
-            ],
-            [
-              {
-                "params": [
-                  "source"
-                ],
-                "type": "field"
-              }
-            ],
-            [
-              {
-                "params": [
-                  "monitor"
-                ],
-                "type": "field"
-              }
-            ],
-            [
-              {
-                "params": [
-                  "defaultgw"
-                ],
-                "type": "field"
-              }
-            ],
-            [
-              {
-                "params": [
-                  "status"
-                ],
-                "type": "field"
-              }
-            ],
-            [
-              {
-                "params": [
-                  "substatus"
-                ],
-                "type": "field"
-              }
-            ],
-            [
-              {
-                "params": [
-                  "interface"
-                ],
-                "type": "field"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "host",
-              "operator": "=~",
-              "value": "/^$Host$/"
-            }
-          ]
-        }
-      ],
-      "title": "Gateway Summary - $Gateway",
-      "transformations": [
-        {
-          "id": "organize",
-          "options": {
-            "excludeByName": {
-              "gateway_name": false
-            },
-            "indexByName": {
-              "Time": 0,
-              "defaultgw": 6,
-              "gateway_name": 1,
-              "gwdescr": 3,
-              "interface": 2,
-              "monitor": 5,
-              "source": 4,
-              "status": 7,
-              "substatus": 8
-            },
-            "renameByName": {
-              "Time": "",
-              "defaultgw": "Default GW",
-              "gateway_name": "Gateway Name",
-              "gwdescr": "Gateway Description",
-              "interface": "Interface",
-              "monitor": "Monitor IP",
-              "source": "Gateway IP",
-              "status": "Status",
-              "substatus": "Status Detail"
-            }
-          }
-        },
-        {
-          "id": "filterFieldsByName",
-          "options": {
-            "include": {
-              "names": [
-                "Gateway Name",
-                "Gateway Description",
-                "Gateway IP",
-                "Monitor IP",
-                "Default GW",
-                "Status",
-                "Status Detail",
-                "Interface"
-              ]
-            }
-          }
-        }
-      ],
-      "type": "table"
-    },
-    {
-      "collapsed": false,
-      "gridPos": {
-        "h": 1,
-        "w": 24,
-        "x": 0,
-        "y": 32
-      },
-      "id": 14,
-      "panels": [],
-      "repeat": "WAN",
-      "title": "WAN Interface - $WAN",
-      "type": "row"
-    },
-    {
-      "datasource": {
-        "uid": "$dataSource"
-      },
-      "description": "",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "custom": {
-            "align": "center",
-            "cellOptions": {
-              "type": "color-text"
-            },
-            "filterable": false,
-            "inspect": false
-          },
-          "mappings": [
-            {
-              "options": {
-                "0": {
-                  "text": "DOWN"
-                },
-                "1": {
-                  "text": "UP"
-                },
-                "2": {
-                  "text": "UNKNOWN"
-                }
-              },
-              "type": "value"
-            }
-          ],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "rgb(255, 255, 255)",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 0
-              },
-              {
-                "color": "green",
-                "value": 1
-              },
-              {
-                "color": "orange",
-                "value": 2
-              }
-            ]
-          }
-        },
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "name"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "Interface"
-              },
-              {
-                "id": "unit",
-                "value": "short"
-              },
-              {
-                "id": "decimals",
-                "value": 2
-              },
-              {
-                "id": "custom.align"
-              }
-            ]
-          }
-        ]
-      },
-      "gridPos": {
-        "h": 4,
-        "w": 24,
-        "x": 0,
-        "y": 33
-      },
-      "id": 603,
-      "options": {
-        "cellHeight": "sm",
-        "footer": {
-          "countRows": false,
-          "fields": "",
-          "reducer": [
-            "sum"
-          ],
-          "show": false
-        },
-        "showHeader": true,
-        "sortBy": []
-      },
-      "pluginVersion": "11.4.0",
-      "targets": [
-        {
-          "alias": "",
-          "datasource": {
-            "uid": "$dataSource"
-          },
-          "groupBy": [
-            {
-              "params": [
-                "name"
-              ],
-              "type": "tag"
-            }
-          ],
-          "limit": "1",
-          "measurement": "interface",
-          "orderByTime": "ASC",
-          "policy": "autogen",
-          "refId": "A",
-          "resultFormat": "table",
-          "select": [
-            [
-              {
-                "params": [
-                  "friendlyname"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [
-                  "FriendlyName"
-                ],
-                "type": "alias"
-              }
-            ],
-            [
-              {
-                "params": [
-                  "ip4_address"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [
-                  "IPv4 Address"
-                ],
-                "type": "alias"
-              }
-            ],
-            [
-              {
-                "params": [
-                  "mac_address"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [
-                  "Physical Address"
-                ],
-                "type": "alias"
-              }
-            ],
-            [
-              {
-                "params": [
-                  "status"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "last"
-              },
-              {
-                "params": [
-                  "Status"
-                ],
-                "type": "alias"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "host",
-              "operator": "=~",
-              "value": "/^$Host$/"
-            },
-            {
-              "condition": "AND",
-              "key": "name",
-              "operator": "=~",
-              "value": "/^$WAN$/"
-            }
-          ]
-        }
-      ],
-      "title": "Interface summary",
-      "transformations": [
-        {
-          "id": "merge",
-          "options": {
-            "reducers": []
-          }
-        },
-        {
-          "id": "filterFieldsByName",
-          "options": {
-            "include": {
-              "names": [
-                "name",
-                "FriendlyName",
-                "Physical Address",
-                "Status",
-                "IPv4 Address"
-              ]
-            }
-          }
-        }
-      ],
-      "type": "table"
-    },
-    {
-      "datasource": {
-        "uid": "$dataSource"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "barWidthFactor": 0.6,
-            "drawStyle": "line",
-            "fillOpacity": 10,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "insertNulls": false,
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "log": 2,
-              "type": "log"
-            },
-            "showPoints": "never",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "decimals": 2,
-          "links": [],
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "Bps"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 9,
-        "x": 0,
-        "y": 37
-      },
-      "id": 2,
-      "options": {
-        "alertThreshold": true,
-        "legend": {
-          "calcs": [
-            "mean",
-            "lastNotNull",
-            "max"
-          ],
-          "displayMode": "table",
-          "placement": "bottom",
-          "showLegend": true
-        },
-        "tooltip": {
-          "mode": "multi",
-          "sort": "none"
-        }
-      },
-      "pluginVersion": "11.4.0",
-      "targets": [
-        {
-          "alias": "$tag_interface - $col",
-          "datasource": {
-            "uid": "$dataSource"
-          },
-          "groupBy": [
-            {
-              "params": [
-                "10s"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "interface"
-              ],
-              "type": "tag"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "net",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "C",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "bytes_recv"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "first"
-              },
-              {
-                "params": [
-                  "1s"
-                ],
-                "type": "derivative"
-              },
-              {
-                "params": [
-                  "* count(\"bytes_recv\") / count(\"bytes_recv\")"
-                ],
-                "type": "math"
-              },
-              {
-                "params": [
-                  "Bytes_Recv"
-                ],
-                "type": "alias"
-              }
-            ],
-            [
-              {
-                "params": [
-                  "bytes_sent"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "first"
-              },
-              {
-                "params": [
-                  "1s"
-                ],
-                "type": "derivative"
-              },
-              {
-                "params": [
-                  "* count(\"bytes_sent\") / count(\"bytes_sent\")"
-                ],
-                "type": "math"
-              },
-              {
-                "params": [
-                  "Bytes_Sent"
-                ],
-                "type": "alias"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "host",
-              "operator": "=~",
-              "value": "/^$Host$/"
-            },
-            {
-              "condition": "AND",
-              "key": "interface",
-              "operator": "=~",
-              "value": "/^$WAN$/"
-            }
-          ]
-        }
-      ],
-      "title": "WAN Traffic - $WAN (Bytes/sec)",
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "uid": "$dataSource"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "decimals": 2,
-          "mappings": [
-            {
-              "options": {
-                "match": "null",
-                "result": {
-                  "text": "N/A"
-                }
-              },
-              "type": "special"
-            }
-          ],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              }
-            ]
-          },
-          "unit": "bps"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 3,
-        "x": 9,
-        "y": 37
-      },
-      "id": 247,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "area",
-        "justifyMode": "auto",
-        "orientation": "horizontal",
-        "percentChangeColorMode": "standard",
-        "reduceOptions": {
-          "calcs": [
-            "mean"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showPercentChange": false,
-        "text": {},
-        "textMode": "auto",
-        "wideLayout": true
-      },
-      "pluginVersion": "11.4.0",
-      "targets": [
-        {
-          "alias": "$tag_interface - $col",
-          "datasource": {
-            "uid": "$dataSource"
-          },
-          "groupBy": [
-            {
-              "params": [
-                "10s"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "interface"
-              ],
-              "type": "tag"
-            },
-            {
-              "params": [
-                "none"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "net",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "C",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "bytes_recv"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "first"
-              },
-              {
-                "params": [
-                  "1s"
-                ],
-                "type": "derivative"
-              },
-              {
-                "params": [
-                  "* count(\"bytes_recv\") / count(\"bytes_recv\") * 8"
-                ],
-                "type": "math"
-              },
-              {
-                "params": [
-                  "Bits_Recv"
-                ],
-                "type": "alias"
-              }
-            ],
-            [
-              {
-                "params": [
-                  "bytes_sent"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "first"
-              },
-              {
-                "params": [
-                  "1s"
-                ],
-                "type": "derivative"
-              },
-              {
-                "params": [
-                  "* count(\"bytes_sent\") / count(\"bytes_sent\") * 8"
-                ],
-                "type": "math"
-              },
-              {
-                "params": [
-                  "Bits_Sent"
-                ],
-                "type": "alias"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "host",
-              "operator": "=~",
-              "value": "/^$Host$/"
-            },
-            {
-              "condition": "AND",
-              "key": "interface",
-              "operator": "=~",
-              "value": "/^$WAN$/"
-            }
-          ]
-        }
-      ],
-      "title": "WAN Traffic - $WAN (Bits/sec)",
-      "type": "stat"
-    },
-    {
-      "datasource": {
-        "uid": "$dataSource"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "decimals": 2,
-          "mappings": [
-            {
-              "options": {
-                "match": "null",
-                "result": {
-                  "text": "N/A"
-                }
-              },
-              "type": "special"
-            }
-          ],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              }
-            ]
-          },
-          "unit": "bytes"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 3,
-        "x": 12,
-        "y": 37
-      },
-      "hideTimeOverride": true,
-      "id": 296,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "area",
-        "justifyMode": "auto",
-        "orientation": "horizontal",
-        "percentChangeColorMode": "standard",
-        "reduceOptions": {
-          "calcs": [
-            "sum"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showPercentChange": false,
-        "text": {},
-        "textMode": "auto",
-        "wideLayout": true
-      },
-      "pluginVersion": "11.4.0",
-      "targets": [
-        {
-          "alias": "$tag_interface - $col - This Month",
-          "datasource": {
-            "uid": "$dataSource"
-          },
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "interface"
-              ],
-              "type": "tag"
-            },
-            {
-              "params": [
-                "none"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "net",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "bytes_recv"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "first"
-              },
-              {
-                "params": [],
-                "type": "non_negative_difference"
-              },
-              {
-                "params": [
-                  "Bytes_Recv"
-                ],
-                "type": "alias"
-              }
-            ],
-            [
-              {
-                "params": [
-                  "bytes_sent"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "first"
-              },
-              {
-                "params": [],
-                "type": "non_negative_difference"
-              },
-              {
-                "params": [
-                  "Bytes_Sent"
-                ],
-                "type": "alias"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "host",
-              "operator": "=~",
-              "value": "/^$Host$/"
-            },
-            {
-              "condition": "AND",
-              "key": "interface",
-              "operator": "=~",
-              "value": "/^$WAN$/"
-            }
-          ]
-        }
-      ],
-      "timeFrom": "now/M",
-      "title": "WAN $WAN",
-      "type": "stat"
-    },
-    {
-      "datasource": {
-        "uid": "$dataSource"
-      },
-      "description": "",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "barWidthFactor": 0.6,
-            "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "insertNulls": false,
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "log": 2,
-              "type": "log"
-            },
-            "showPoints": "never",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "decimals": 2,
-          "links": [],
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "short"
-        },
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byValue",
-              "options": {
-                "op": "gte",
-                "reducer": "allIsZero",
-                "value": 0
-              }
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": true,
-                  "tooltip": true,
-                  "viz": false
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byValue",
-              "options": {
-                "op": "gte",
-                "reducer": "allIsZero",
-                "value": 0
-              }
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": true,
-                  "tooltip": true,
-                  "viz": false
-                }
-              }
-            ]
-          }
-        ]
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 9,
-        "x": 15,
-        "y": 37
-      },
-      "id": 322,
-      "options": {
-        "alertThreshold": true,
-        "legend": {
-          "calcs": [
-            "mean",
-            "lastNotNull",
-            "max",
-            "min"
-          ],
-          "displayMode": "table",
-          "placement": "bottom",
-          "showLegend": true
-        },
-        "tooltip": {
-          "mode": "multi",
-          "sort": "none"
-        }
-      },
-      "pluginVersion": "11.4.0",
-      "targets": [
-        {
-          "alias": "$tag_interface - $col",
-          "datasource": {
-            "uid": "$dataSource"
-          },
-          "groupBy": [
-            {
-              "params": [
-                "10s"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "interface"
-              ],
-              "type": "tag"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "net",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "G",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "packets_recv"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "first"
-              },
-              {
-                "params": [
-                  "1s"
-                ],
-                "type": "derivative"
-              },
-              {
-                "params": [
-                  "* count(\"packets_recv\") / count(\"packets_recv\")"
-                ],
-                "type": "math"
-              },
-              {
-                "params": [
-                  "Packets_Recv"
-                ],
-                "type": "alias"
-              }
-            ],
-            [
-              {
-                "params": [
-                  "packets_sent"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "first"
-              },
-              {
-                "params": [
-                  "1s"
-                ],
-                "type": "derivative"
-              },
-              {
-                "params": [
-                  "* count(\"packets_sent\") / count(\"packets_sent\")"
-                ],
-                "type": "math"
-              },
-              {
-                "params": [
-                  "Packets_Sent"
-                ],
-                "type": "alias"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "interface",
-              "operator": "=~",
-              "value": "/^$WAN$/"
-            },
-            {
-              "condition": "AND",
-              "key": "host",
-              "operator": "=~",
-              "value": "/^$Host$/"
-            }
-          ]
-        },
-        {
-          "alias": "$tag_interface - $col",
-          "datasource": {
-            "uid": "$dataSource"
-          },
-          "groupBy": [
-            {
-              "params": [
-                "interface"
-              ],
-              "type": "tag"
-            },
-            {
-              "params": [
-                "interface"
-              ],
-              "type": "tag"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "hide": false,
-          "measurement": "net",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "drop_in"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [
-                  "Drop_In"
-                ],
-                "type": "alias"
-              }
-            ],
-            [
-              {
-                "params": [
-                  "drop_out"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [
-                  "Drop_Out"
-                ],
-                "type": "alias"
-              }
-            ],
-            [
-              {
-                "params": [
-                  "err_in"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [
-                  "Err_In"
-                ],
-                "type": "alias"
-              }
-            ],
-            [
-              {
-                "params": [
-                  "err_out"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [
-                  "Err_Out"
-                ],
-                "type": "alias"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "interface",
-              "operator": "=~",
-              "value": "/^$WAN$/"
-            },
-            {
-              "condition": "AND",
-              "key": "host",
-              "operator": "=~",
-              "value": "/^$Host$/"
-            }
-          ]
-        }
-      ],
-      "title": "WAN Throughput - $WAN",
-      "type": "timeseries"
-    },
-    {
       "collapsed": true,
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 57
+        "y": 17
       },
-      "id": 43,
+      "id": 143,
       "panels": [
+        {
+          "datasource": {
+            "uid": "$dataSource"
+          },
+          "description": "",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "barWidthFactor": 0.6,
+                "drawStyle": "line",
+                "fillOpacity": 10,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "insertNulls": false,
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "log": 10,
+                  "type": "log"
+                },
+                "showPoints": "never",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "links": [],
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "ms"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 8,
+            "w": 11,
+            "x": 0,
+            "y": 16
+          },
+          "id": 4,
+          "options": {
+            "alertThreshold": true,
+            "legend": {
+              "calcs": [
+                "mean",
+                "lastNotNull",
+                "max",
+                "min"
+              ],
+              "displayMode": "table",
+              "placement": "bottom",
+              "showLegend": true
+            },
+            "tooltip": {
+              "mode": "multi",
+              "sort": "none"
+            }
+          },
+          "pluginVersion": "11.4.0",
+          "targets": [
+            {
+              "alias": "$tag_gateway_name",
+              "datasource": {
+                "uid": "$dataSource"
+              },
+              "groupBy": [
+                {
+                  "params": [
+                    "10s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "gateway_name"
+                  ],
+                  "type": "tag"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "hide": false,
+              "measurement": "gateways",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT mean(\"rtt\") FROM \"gateways\" WHERE (\"host\" =~ /^$Host$/ AND \"gateway_name\" =~ /^$Gateway$/) AND $timeFilter GROUP BY time(10s), \"gateway_name\" fill(null)",
+              "rawQuery": true,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "delay"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=~",
+                  "value": "/^$Host$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "gateway_name",
+                  "operator": "=~",
+                  "value": "/^$Gateway$/"
+                }
+              ]
+            }
+          ],
+          "title": "Gateway RTT - $Gateway ",
+          "type": "timeseries"
+        },
         {
           "datasource": {
             "uid": "$dataSource"
@@ -6197,11 +4390,12 @@
                 "mode": "thresholds"
               },
               "custom": {
-                "align": "center",
+                "align": "left",
                 "cellOptions": {
                   "type": "color-text"
                 },
-                "filterable": false
+                "filterable": true,
+                "inspect": false
               },
               "mappings": [
                 {
@@ -6223,7 +4417,1821 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "rgb(255, 255, 255)"
+                    "color": "rgb(255, 255, 255)",
+                    "value": null
+                  }
+                ]
+              }
+            },
+            "overrides": [
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "name"
+                },
+                "properties": [
+                  {
+                    "id": "displayName",
+                    "value": "Interface"
+                  },
+                  {
+                    "id": "unit",
+                    "value": "short"
+                  },
+                  {
+                    "id": "decimals",
+                    "value": 2
+                  },
+                  {
+                    "id": "custom.align"
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "FriendlyName"
+                },
+                "properties": [
+                  {
+                    "id": "custom.width",
+                    "value": 126
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "Status"
+                },
+                "properties": [
+                  {
+                    "id": "thresholds",
+                    "value": {
+                      "mode": "absolute",
+                      "steps": [
+                        {
+                          "color": "rgba(81, 48, 255, 0)",
+                          "value": null
+                        },
+                        {
+                          "color": "red",
+                          "value": 0
+                        },
+                        {
+                          "color": "green",
+                          "value": 1
+                        },
+                        {
+                          "color": "dark-orange",
+                          "value": 2
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "id": "mappings",
+                    "value": [
+                      {
+                        "options": {
+                          "0": {
+                            "text": "DOWN"
+                          },
+                          "1": {
+                            "text": "UP"
+                          },
+                          "2": {
+                            "text": "UNKNOWN"
+                          }
+                        },
+                        "type": "value"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          "gridPos": {
+            "h": 8,
+            "w": 13,
+            "x": 11,
+            "y": 16
+          },
+          "id": 194,
+          "options": {
+            "cellHeight": "sm",
+            "footer": {
+              "countRows": false,
+              "fields": "",
+              "reducer": [
+                "sum"
+              ],
+              "show": false
+            },
+            "showHeader": true,
+            "sortBy": [
+              {
+                "desc": false,
+                "displayName": "Interface"
+              }
+            ]
+          },
+          "pluginVersion": "11.4.0",
+          "targets": [
+            {
+              "alias": "",
+              "datasource": {
+                "uid": "$dataSource"
+              },
+              "groupBy": [
+                {
+                  "params": [
+                    "name"
+                  ],
+                  "type": "tag"
+                }
+              ],
+              "limit": "1",
+              "measurement": "interface",
+              "orderByTime": "ASC",
+              "policy": "autogen",
+              "refId": "A",
+              "resultFormat": "table",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "friendlyname"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [
+                      "FriendlyName"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "ip4_address"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [
+                      "IPv4 Address"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "mac_address"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [
+                      "Physical Address"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "status"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  },
+                  {
+                    "params": [
+                      "Status"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "ip6_address"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [
+                      "IPv6 Address"
+                    ],
+                    "type": "alias"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=~",
+                  "value": "/^$Host$/"
+                }
+              ]
+            }
+          ],
+          "title": "Interface Summary",
+          "transformations": [
+            {
+              "id": "merge",
+              "options": {
+                "reducers": []
+              }
+            },
+            {
+              "id": "filterFieldsByName",
+              "options": {
+                "include": {
+                  "names": [
+                    "name",
+                    "FriendlyName",
+                    "Physical Address",
+                    "Status",
+                    "IPv4 Address"
+                  ]
+                }
+              }
+            }
+          ],
+          "type": "table"
+        },
+        {
+          "datasource": {
+            "uid": "$dataSource"
+          },
+          "description": "",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "barWidthFactor": 0.6,
+                "drawStyle": "line",
+                "fillOpacity": 10,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "insertNulls": false,
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "never",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "decimals": 0,
+              "links": [],
+              "mappings": [],
+              "max": 100,
+              "min": 0,
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "percent"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 8,
+            "w": 11,
+            "x": 0,
+            "y": 44
+          },
+          "id": 487,
+          "options": {
+            "alertThreshold": true,
+            "legend": {
+              "calcs": [
+                "mean",
+                "lastNotNull",
+                "max"
+              ],
+              "displayMode": "table",
+              "placement": "bottom",
+              "showLegend": true
+            },
+            "tooltip": {
+              "mode": "multi",
+              "sort": "none"
+            }
+          },
+          "pluginVersion": "11.4.0",
+          "targets": [
+            {
+              "alias": "$tag_gateway_name",
+              "datasource": {
+                "uid": "$dataSource"
+              },
+              "groupBy": [
+                {
+                  "params": [
+                    "10s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "gateway_name"
+                  ],
+                  "type": "tag"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "gateways",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "loss"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=~",
+                  "value": "/^$Host$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "gateway_name",
+                  "operator": "=~",
+                  "value": "/^$Gateway$/"
+                }
+              ]
+            }
+          ],
+          "title": "Gateway Loss - $Gateway ",
+          "type": "timeseries"
+        },
+        {
+          "datasource": {
+            "uid": "$dataSource"
+          },
+          "description": "",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "custom": {
+                "align": "left",
+                "cellOptions": {
+                  "type": "color-text"
+                },
+                "filterable": true,
+                "inspect": false
+              },
+              "mappings": [
+                {
+                  "options": {
+                    "none": {
+                      "text": "OK"
+                    }
+                  },
+                  "type": "value"
+                }
+              ],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "rgb(255, 255, 255)",
+                    "value": null
+                  }
+                ]
+              }
+            },
+            "overrides": [
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "Default GW"
+                },
+                "properties": [
+                  {
+                    "id": "mappings",
+                    "value": [
+                      {
+                        "options": {
+                          "0": {
+                            "text": "False"
+                          },
+                          "1": {
+                            "text": "True"
+                          }
+                        },
+                        "type": "value"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "Interface"
+                },
+                "properties": [
+                  {
+                    "id": "custom.width",
+                    "value": 157
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "Gateway Description"
+                },
+                "properties": [
+                  {
+                    "id": "custom.width",
+                    "value": 274
+                  }
+                ]
+              }
+            ]
+          },
+          "gridPos": {
+            "h": 8,
+            "w": 13,
+            "x": 11,
+            "y": 44
+          },
+          "id": 961,
+          "options": {
+            "cellHeight": "sm",
+            "footer": {
+              "countRows": false,
+              "fields": "",
+              "reducer": [
+                "sum"
+              ],
+              "show": false
+            },
+            "showHeader": true,
+            "sortBy": []
+          },
+          "pluginVersion": "11.4.0",
+          "targets": [
+            {
+              "datasource": {
+                "uid": "$dataSource"
+              },
+              "groupBy": [
+                {
+                  "params": [
+                    "gateway_name"
+                  ],
+                  "type": "tag"
+                }
+              ],
+              "hide": false,
+              "limit": "1",
+              "measurement": "gateways",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT \"gwdescr\", \"source\", \"monitor\", \"defaultgw\", \"status\", \"substatus\", \"interface\" FROM \"gateways\" WHERE (\"host\" =~ /^$Host$/) AND $timeFilter GROUP BY \"gateway_name\" LIMIT 1",
+              "rawQuery": true,
+              "refId": "A",
+              "resultFormat": "table",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "gwdescr"
+                    ],
+                    "type": "field"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "source"
+                    ],
+                    "type": "field"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "monitor"
+                    ],
+                    "type": "field"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "defaultgw"
+                    ],
+                    "type": "field"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "status"
+                    ],
+                    "type": "field"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "substatus"
+                    ],
+                    "type": "field"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "interface"
+                    ],
+                    "type": "field"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=~",
+                  "value": "/^$Host$/"
+                }
+              ]
+            }
+          ],
+          "title": "Gateway Summary - $Gateway",
+          "transformations": [
+            {
+              "id": "organize",
+              "options": {
+                "excludeByName": {
+                  "gateway_name": false
+                },
+                "indexByName": {
+                  "Time": 0,
+                  "defaultgw": 6,
+                  "gateway_name": 1,
+                  "gwdescr": 3,
+                  "interface": 2,
+                  "monitor": 5,
+                  "source": 4,
+                  "status": 7,
+                  "substatus": 8
+                },
+                "renameByName": {
+                  "Time": "",
+                  "defaultgw": "Default GW",
+                  "gateway_name": "Gateway Name",
+                  "gwdescr": "Gateway Description",
+                  "interface": "Interface",
+                  "monitor": "Monitor IP",
+                  "source": "Gateway IP",
+                  "status": "Status",
+                  "substatus": "Status Detail"
+                }
+              }
+            },
+            {
+              "id": "filterFieldsByName",
+              "options": {
+                "include": {
+                  "names": [
+                    "Gateway Name",
+                    "Gateway Description",
+                    "Gateway IP",
+                    "Monitor IP",
+                    "Default GW",
+                    "Status",
+                    "Status Detail",
+                    "Interface"
+                  ]
+                }
+              }
+            }
+          ],
+          "type": "table"
+        }
+      ],
+      "title": "Network Stats",
+      "type": "row"
+    },
+    {
+      "collapsed": true,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 18
+      },
+      "id": 14,
+      "panels": [
+        {
+          "datasource": {
+            "uid": "$dataSource"
+          },
+          "description": "",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "custom": {
+                "align": "center",
+                "cellOptions": {
+                  "type": "color-text"
+                },
+                "filterable": false,
+                "inspect": false
+              },
+              "mappings": [
+                {
+                  "options": {
+                    "0": {
+                      "text": "DOWN"
+                    },
+                    "1": {
+                      "text": "UP"
+                    },
+                    "2": {
+                      "text": "UNKNOWN"
+                    }
+                  },
+                  "type": "value"
+                }
+              ],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "rgb(255, 255, 255)",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 0
+                  },
+                  {
+                    "color": "green",
+                    "value": 1
+                  },
+                  {
+                    "color": "orange",
+                    "value": 2
+                  }
+                ]
+              }
+            },
+            "overrides": [
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "name"
+                },
+                "properties": [
+                  {
+                    "id": "displayName",
+                    "value": "Interface"
+                  },
+                  {
+                    "id": "unit",
+                    "value": "short"
+                  },
+                  {
+                    "id": "decimals",
+                    "value": 2
+                  },
+                  {
+                    "id": "custom.align"
+                  }
+                ]
+              }
+            ]
+          },
+          "gridPos": {
+            "h": 4,
+            "w": 24,
+            "x": 0,
+            "y": 53
+          },
+          "id": 603,
+          "options": {
+            "cellHeight": "sm",
+            "footer": {
+              "countRows": false,
+              "fields": "",
+              "reducer": [
+                "sum"
+              ],
+              "show": false
+            },
+            "showHeader": true,
+            "sortBy": []
+          },
+          "pluginVersion": "11.4.0",
+          "targets": [
+            {
+              "alias": "",
+              "datasource": {
+                "uid": "$dataSource"
+              },
+              "groupBy": [
+                {
+                  "params": [
+                    "name"
+                  ],
+                  "type": "tag"
+                }
+              ],
+              "limit": "1",
+              "measurement": "interface",
+              "orderByTime": "ASC",
+              "policy": "autogen",
+              "refId": "A",
+              "resultFormat": "table",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "friendlyname"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [
+                      "FriendlyName"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "ip4_address"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [
+                      "IPv4 Address"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "mac_address"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [
+                      "Physical Address"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "status"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  },
+                  {
+                    "params": [
+                      "Status"
+                    ],
+                    "type": "alias"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=~",
+                  "value": "/^$Host$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "name",
+                  "operator": "=~",
+                  "value": "/^$WAN$/"
+                }
+              ]
+            }
+          ],
+          "title": "Interface summary",
+          "transformations": [
+            {
+              "id": "merge",
+              "options": {
+                "reducers": []
+              }
+            },
+            {
+              "id": "filterFieldsByName",
+              "options": {
+                "include": {
+                  "names": [
+                    "name",
+                    "FriendlyName",
+                    "Physical Address",
+                    "Status",
+                    "IPv4 Address"
+                  ]
+                }
+              }
+            }
+          ],
+          "type": "table"
+        },
+        {
+          "datasource": {
+            "uid": "$dataSource"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "barWidthFactor": 0.6,
+                "drawStyle": "line",
+                "fillOpacity": 10,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "insertNulls": false,
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "log": 2,
+                  "type": "log"
+                },
+                "showPoints": "never",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "decimals": 2,
+              "links": [],
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "Bps"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 8,
+            "w": 9,
+            "x": 0,
+            "y": 68
+          },
+          "id": 2,
+          "options": {
+            "alertThreshold": true,
+            "legend": {
+              "calcs": [
+                "mean",
+                "lastNotNull",
+                "max"
+              ],
+              "displayMode": "table",
+              "placement": "bottom",
+              "showLegend": true
+            },
+            "tooltip": {
+              "mode": "multi",
+              "sort": "none"
+            }
+          },
+          "pluginVersion": "11.4.0",
+          "targets": [
+            {
+              "alias": "$tag_interface - $col",
+              "datasource": {
+                "uid": "$dataSource"
+              },
+              "groupBy": [
+                {
+                  "params": [
+                    "10s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "interface"
+                  ],
+                  "type": "tag"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "net",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "C",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "bytes_recv"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "first"
+                  },
+                  {
+                    "params": [
+                      "1s"
+                    ],
+                    "type": "derivative"
+                  },
+                  {
+                    "params": [
+                      "* count(\"bytes_recv\") / count(\"bytes_recv\")"
+                    ],
+                    "type": "math"
+                  },
+                  {
+                    "params": [
+                      "Bytes_Recv"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "bytes_sent"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "first"
+                  },
+                  {
+                    "params": [
+                      "1s"
+                    ],
+                    "type": "derivative"
+                  },
+                  {
+                    "params": [
+                      "* count(\"bytes_sent\") / count(\"bytes_sent\")"
+                    ],
+                    "type": "math"
+                  },
+                  {
+                    "params": [
+                      "Bytes_Sent"
+                    ],
+                    "type": "alias"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=~",
+                  "value": "/^$Host$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "interface",
+                  "operator": "=~",
+                  "value": "/^$WAN$/"
+                }
+              ]
+            }
+          ],
+          "title": "WAN Traffic - $WAN (Bytes/sec)",
+          "type": "timeseries"
+        },
+        {
+          "datasource": {
+            "uid": "$dataSource"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "decimals": 2,
+              "mappings": [
+                {
+                  "options": {
+                    "match": "null",
+                    "result": {
+                      "text": "N/A"
+                    }
+                  },
+                  "type": "special"
+                }
+              ],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  }
+                ]
+              },
+              "unit": "bps"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 8,
+            "w": 3,
+            "x": 9,
+            "y": 68
+          },
+          "id": 247,
+          "options": {
+            "colorMode": "value",
+            "graphMode": "area",
+            "justifyMode": "auto",
+            "orientation": "horizontal",
+            "percentChangeColorMode": "standard",
+            "reduceOptions": {
+              "calcs": [
+                "mean"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "showPercentChange": false,
+            "text": {},
+            "textMode": "auto",
+            "wideLayout": true
+          },
+          "pluginVersion": "11.4.0",
+          "targets": [
+            {
+              "alias": "$tag_interface - $col",
+              "datasource": {
+                "uid": "$dataSource"
+              },
+              "groupBy": [
+                {
+                  "params": [
+                    "10s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "interface"
+                  ],
+                  "type": "tag"
+                },
+                {
+                  "params": [
+                    "none"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "net",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "C",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "bytes_recv"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "first"
+                  },
+                  {
+                    "params": [
+                      "1s"
+                    ],
+                    "type": "derivative"
+                  },
+                  {
+                    "params": [
+                      "* count(\"bytes_recv\") / count(\"bytes_recv\") * 8"
+                    ],
+                    "type": "math"
+                  },
+                  {
+                    "params": [
+                      "Bits_Recv"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "bytes_sent"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "first"
+                  },
+                  {
+                    "params": [
+                      "1s"
+                    ],
+                    "type": "derivative"
+                  },
+                  {
+                    "params": [
+                      "* count(\"bytes_sent\") / count(\"bytes_sent\") * 8"
+                    ],
+                    "type": "math"
+                  },
+                  {
+                    "params": [
+                      "Bits_Sent"
+                    ],
+                    "type": "alias"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=~",
+                  "value": "/^$Host$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "interface",
+                  "operator": "=~",
+                  "value": "/^$WAN$/"
+                }
+              ]
+            }
+          ],
+          "title": "WAN Traffic - $WAN (Bits/sec)",
+          "type": "stat"
+        },
+        {
+          "datasource": {
+            "uid": "$dataSource"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "decimals": 2,
+              "mappings": [
+                {
+                  "options": {
+                    "match": "null",
+                    "result": {
+                      "text": "N/A"
+                    }
+                  },
+                  "type": "special"
+                }
+              ],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  }
+                ]
+              },
+              "unit": "bytes"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 8,
+            "w": 3,
+            "x": 12,
+            "y": 68
+          },
+          "hideTimeOverride": true,
+          "id": 296,
+          "options": {
+            "colorMode": "value",
+            "graphMode": "area",
+            "justifyMode": "auto",
+            "orientation": "horizontal",
+            "percentChangeColorMode": "standard",
+            "reduceOptions": {
+              "calcs": [
+                "sum"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "showPercentChange": false,
+            "text": {},
+            "textMode": "auto",
+            "wideLayout": true
+          },
+          "pluginVersion": "11.4.0",
+          "targets": [
+            {
+              "alias": "$tag_interface - $col - This Month",
+              "datasource": {
+                "uid": "$dataSource"
+              },
+              "groupBy": [
+                {
+                  "params": [
+                    "$__interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "interface"
+                  ],
+                  "type": "tag"
+                },
+                {
+                  "params": [
+                    "none"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "net",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "bytes_recv"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "first"
+                  },
+                  {
+                    "params": [],
+                    "type": "non_negative_difference"
+                  },
+                  {
+                    "params": [
+                      "Bytes_Recv"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "bytes_sent"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "first"
+                  },
+                  {
+                    "params": [],
+                    "type": "non_negative_difference"
+                  },
+                  {
+                    "params": [
+                      "Bytes_Sent"
+                    ],
+                    "type": "alias"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=~",
+                  "value": "/^$Host$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "interface",
+                  "operator": "=~",
+                  "value": "/^$WAN$/"
+                }
+              ]
+            }
+          ],
+          "timeFrom": "now/M",
+          "title": "WAN $WAN",
+          "type": "stat"
+        },
+        {
+          "datasource": {
+            "uid": "$dataSource"
+          },
+          "description": "",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "barWidthFactor": 0.6,
+                "drawStyle": "line",
+                "fillOpacity": 0,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "insertNulls": false,
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "log": 2,
+                  "type": "log"
+                },
+                "showPoints": "never",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "decimals": 2,
+              "links": [],
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "short"
+            },
+            "overrides": [
+              {
+                "matcher": {
+                  "id": "byValue",
+                  "options": {
+                    "op": "gte",
+                    "reducer": "allIsZero",
+                    "value": 0
+                  }
+                },
+                "properties": [
+                  {
+                    "id": "custom.hideFrom",
+                    "value": {
+                      "legend": true,
+                      "tooltip": true,
+                      "viz": false
+                    }
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byValue",
+                  "options": {
+                    "op": "gte",
+                    "reducer": "allIsZero",
+                    "value": 0
+                  }
+                },
+                "properties": [
+                  {
+                    "id": "custom.hideFrom",
+                    "value": {
+                      "legend": true,
+                      "tooltip": true,
+                      "viz": false
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "gridPos": {
+            "h": 8,
+            "w": 9,
+            "x": 15,
+            "y": 68
+          },
+          "id": 322,
+          "options": {
+            "alertThreshold": true,
+            "legend": {
+              "calcs": [
+                "mean",
+                "lastNotNull",
+                "max",
+                "min"
+              ],
+              "displayMode": "table",
+              "placement": "bottom",
+              "showLegend": true
+            },
+            "tooltip": {
+              "mode": "multi",
+              "sort": "none"
+            }
+          },
+          "pluginVersion": "11.4.0",
+          "targets": [
+            {
+              "alias": "$tag_interface - $col",
+              "datasource": {
+                "uid": "$dataSource"
+              },
+              "groupBy": [
+                {
+                  "params": [
+                    "10s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "interface"
+                  ],
+                  "type": "tag"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "net",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "G",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "packets_recv"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "first"
+                  },
+                  {
+                    "params": [
+                      "1s"
+                    ],
+                    "type": "derivative"
+                  },
+                  {
+                    "params": [
+                      "* count(\"packets_recv\") / count(\"packets_recv\")"
+                    ],
+                    "type": "math"
+                  },
+                  {
+                    "params": [
+                      "Packets_Recv"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "packets_sent"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "first"
+                  },
+                  {
+                    "params": [
+                      "1s"
+                    ],
+                    "type": "derivative"
+                  },
+                  {
+                    "params": [
+                      "* count(\"packets_sent\") / count(\"packets_sent\")"
+                    ],
+                    "type": "math"
+                  },
+                  {
+                    "params": [
+                      "Packets_Sent"
+                    ],
+                    "type": "alias"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "interface",
+                  "operator": "=~",
+                  "value": "/^$WAN$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "host",
+                  "operator": "=~",
+                  "value": "/^$Host$/"
+                }
+              ]
+            },
+            {
+              "alias": "$tag_interface - $col",
+              "datasource": {
+                "uid": "$dataSource"
+              },
+              "groupBy": [
+                {
+                  "params": [
+                    "interface"
+                  ],
+                  "type": "tag"
+                },
+                {
+                  "params": [
+                    "interface"
+                  ],
+                  "type": "tag"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "hide": false,
+              "measurement": "net",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "drop_in"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [
+                      "Drop_In"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "drop_out"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [
+                      "Drop_Out"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "err_in"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [
+                      "Err_In"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "err_out"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [
+                      "Err_Out"
+                    ],
+                    "type": "alias"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "interface",
+                  "operator": "=~",
+                  "value": "/^$WAN$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "host",
+                  "operator": "=~",
+                  "value": "/^$Host$/"
+                }
+              ]
+            }
+          ],
+          "title": "WAN Throughput - $WAN",
+          "type": "timeseries"
+        }
+      ],
+      "repeat": "WAN",
+      "title": "WAN Interface - $WAN",
+      "type": "row"
+    },
+    {
+      "collapsed": true,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 20
+      },
+      "id": 43,
+      "panels": [
+        {
+          "datasource": {
+            "uid": "$dataSource"
+          },
+          "description": "",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "custom": {
+                "align": "center",
+                "cellOptions": {
+                  "type": "color-text"
+                },
+                "filterable": false,
+                "inspect": false
+              },
+              "mappings": [
+                {
+                  "options": {
+                    "0": {
+                      "text": "DOWN"
+                    },
+                    "1": {
+                      "text": "UP"
+                    },
+                    "2": {
+                      "text": "UNKNOWN"
+                    }
+                  },
+                  "type": "value"
+                }
+              ],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "rgb(255, 255, 255)",
+                    "value": null
                   },
                   {
                     "color": "light-red",
@@ -6267,17 +6275,26 @@
             ]
           },
           "gridPos": {
-            "h": 3,
+            "h": 4,
             "w": 24,
             "x": 0,
-            "y": 123
+            "y": 19
           },
           "id": 604,
           "options": {
+            "cellHeight": "sm",
+            "footer": {
+              "countRows": false,
+              "fields": "",
+              "reducer": [
+                "sum"
+              ],
+              "show": false
+            },
             "showHeader": true,
             "sortBy": []
           },
-          "pluginVersion": "7.4.3",
+          "pluginVersion": "11.4.0",
           "targets": [
             {
               "alias": "",
@@ -6406,8 +6423,60 @@
           },
           "fieldConfig": {
             "defaults": {
-              "custom": {},
-              "links": []
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "barWidthFactor": 0.6,
+                "drawStyle": "line",
+                "fillOpacity": 10,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "insertNulls": false,
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "log": 2,
+                  "type": "log"
+                },
+                "showPoints": "never",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "decimals": 2,
+              "links": [],
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "Bps"
             },
             "overrides": []
           },
@@ -6415,13 +6484,28 @@
             "h": 7,
             "w": 9,
             "x": 0,
-            "y": 126
+            "y": 33
           },
           "id": 38,
           "options": {
-            "alertThreshold": true
+            "alertThreshold": true,
+            "legend": {
+              "calcs": [
+                "mean",
+                "lastNotNull",
+                "max",
+                "min"
+              ],
+              "displayMode": "table",
+              "placement": "bottom",
+              "showLegend": true
+            },
+            "tooltip": {
+              "mode": "multi",
+              "sort": "none"
+            }
           },
-          "pluginVersion": "7.4.3",
+          "pluginVersion": "11.4.0",
           "targets": [
             {
               "alias": "$tag_interface - $col",
@@ -6540,7 +6624,6 @@
           },
           "fieldConfig": {
             "defaults": {
-              "custom": {},
               "decimals": 2,
               "mappings": [
                 {
@@ -6557,7 +6640,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   }
                 ]
               },
@@ -6569,7 +6653,7 @@
             "h": 7,
             "w": 3,
             "x": 9,
-            "y": 126
+            "y": 33
           },
           "id": 248,
           "options": {
@@ -6577,6 +6661,7 @@
             "graphMode": "area",
             "justifyMode": "auto",
             "orientation": "horizontal",
+            "percentChangeColorMode": "standard",
             "reduceOptions": {
               "calcs": [
                 "mean"
@@ -6584,10 +6669,12 @@
               "fields": "",
               "values": false
             },
+            "showPercentChange": false,
             "text": {},
-            "textMode": "auto"
+            "textMode": "auto",
+            "wideLayout": true
           },
-          "pluginVersion": "7.4.3",
+          "pluginVersion": "11.4.0",
           "targets": [
             {
               "alias": "$tag_interface - $col",
@@ -6707,7 +6794,6 @@
           },
           "fieldConfig": {
             "defaults": {
-              "custom": {},
               "decimals": 2,
               "mappings": [
                 {
@@ -6724,7 +6810,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   }
                 ]
               },
@@ -6736,7 +6823,7 @@
             "h": 7,
             "w": 3,
             "x": 12,
-            "y": 126
+            "y": 33
           },
           "hideTimeOverride": true,
           "id": 297,
@@ -6745,6 +6832,7 @@
             "graphMode": "area",
             "justifyMode": "auto",
             "orientation": "horizontal",
+            "percentChangeColorMode": "standard",
             "reduceOptions": {
               "calcs": [
                 "sum"
@@ -6752,10 +6840,12 @@
               "fields": "",
               "values": false
             },
+            "showPercentChange": false,
             "text": {},
-            "textMode": "auto"
+            "textMode": "auto",
+            "wideLayout": true
           },
-          "pluginVersion": "7.4.3",
+          "pluginVersion": "11.4.0",
           "targets": [
             {
               "alias": "$tag_interface - $col - This Month",
@@ -6859,22 +6949,110 @@
           "description": "",
           "fieldConfig": {
             "defaults": {
-              "custom": {},
-              "links": []
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "barWidthFactor": 0.6,
+                "drawStyle": "line",
+                "fillOpacity": 0,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "insertNulls": false,
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "log": 2,
+                  "type": "log"
+                },
+                "showPoints": "never",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "decimals": 2,
+              "links": [],
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "short"
             },
-            "overrides": []
+            "overrides": [
+              {
+                "matcher": {
+                  "id": "byValue",
+                  "options": {
+                    "op": "gte",
+                    "reducer": "allIsZero",
+                    "value": 0
+                  }
+                },
+                "properties": [
+                  {
+                    "id": "custom.hideFrom",
+                    "value": {
+                      "legend": true,
+                      "tooltip": true,
+                      "viz": false
+                    }
+                  }
+                ]
+              }
+            ]
           },
           "gridPos": {
             "h": 7,
             "w": 9,
             "x": 15,
-            "y": 126
+            "y": 33
           },
           "id": 347,
           "options": {
-            "alertThreshold": true
+            "alertThreshold": true,
+            "legend": {
+              "calcs": [
+                "mean",
+                "lastNotNull",
+                "max",
+                "min"
+              ],
+              "displayMode": "table",
+              "placement": "bottom",
+              "showLegend": true
+            },
+            "tooltip": {
+              "mode": "multi",
+              "sort": "none"
+            }
           },
-          "pluginVersion": "7.4.3",
+          "pluginVersion": "11.4.0",
           "targets": [
             {
               "alias": "$tag_interface - $col",
@@ -7095,9 +7273,7 @@
       },
       {
         "current": {
-          "text": [
-            "All"
-          ],
+          "text": "All",
           "value": [
             "$__all"
           ]
@@ -7111,7 +7287,7 @@
         "options": [],
         "query": "SHOW TAG VALUES FROM \"net\" WITH KEY = \"interface\" WHERE \"host\" =~ /^$Host$/ ",
         "refresh": 1,
-        "regex": "/^(?!enc0$|igb0$|igb1$|igb2$|igb3$|ovpnc1$)/",
+        "regex": "/^(?!hn0$|hn3$|ovpns1$)/",
         "sort": 1,
         "type": "query"
       },
@@ -7188,6 +7364,6 @@
   "timezone": "",
   "title": "pfSense System Dashboard",
   "uid": "GflT1CsMzxxxxxxx",
-  "version": 7,
+  "version": 14,
   "weekStart": ""
 }
